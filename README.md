@@ -125,10 +125,12 @@ Regularization: Early stopping to prevent overfitting
 
 The performance of different CNN configurations is summarized below:
 
-Model Configuration	                           Accuracy	Precision	Recall	F1-Score
-CNN (Baseline)	                                  64.00%	0.65	0.65	0.64
-CNN + Data Augmentation	                          71.88%	0.71	0.70	0.70
-CNN + Augmentation + Color Space (RGB+HSV)	      84.38%	0.84	0.85	0.84
+| Model Configuration                            | Accuracy | Precision | Recall | F1-Score |
+|------------------------------------------------|----------|-----------|--------|----------|
+| CNN (Baseline)                                 | 64.00%   | 0.65      | 0.65   | 0.64     |
+| CNN + Data Augmentation                        | 71.88%   | 0.71      | 0.70   | 0.70     |
+| **CNN + Augmentation + Color Space (RGB+HSV)** | **84.38%** | **0.84**   | **0.85** | **0.84** |
+
 📈 Visual Comparison
 
 🏆 Best Model: Dual-Branch CNN (RGB + HSV)
