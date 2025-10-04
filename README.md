@@ -10,7 +10,6 @@
 
 ![OpenCV](https://img.shields.io/badge/OpenCV-ImageProcessing-green.svg)
 
-![License](https://img.shields.io/badge/License-MIT-lightgrey.svg)
 
 
 
@@ -115,17 +114,57 @@ The model classifies oral cavity images into **Benign** or **Malignant** categor
 
 \---
 
-\## 📈 Results
+import matplotlib.pyplot as plt
+import numpy as np
 
-| Model Type | Accuracy | Precision | Recall | F1-Score |
+# Model names
+models = [
+    "CNN (Baseline)",
+    "CNN + Augmentation",
+    "CNN + Aug + Color (RGB+HSV)"
+]
 
-|-------------|-----------|------------|----------|-----------|
+# Performance metrics
+accuracy = [64.00, 71.88, 84.38]
+precision = [0.65, 0.71, 0.84]
+recall = [0.65, 0.70, 0.85]
+f1_score = [0.64, 0.70, 0.84]
 
-| CNN (base) | 64.00% | 0.65 | 0.65 | 0.64 |
+# Grouped bar chart setup
+x = np.arange(len(models))
+width = 0.2  # Bar width
 
-| CNN + Augmentation | 71.88% | 0.71 | 0.70 | 0.70 |
+fig, ax = plt.subplots(figsize=(10, 6))
 
-| CNN + Augmentation + Color Space (RGB + HSV) | \*\*84.38%\*\* | \*\*0.84\*\* | \*\*0.85\*\* | \*\*0.84\*\* |
+bars1 = ax.bar(x - 1.5*width, accuracy, width, label="Accuracy")
+bars2 = ax.bar(x - 0.5*width, precision, width, label="Precision")
+bars3 = ax.bar(x + 0.5*width, recall, width, label="Recall")
+bars4 = ax.bar(x + 1.5*width, f1_score, width, label="F1-Score")
+
+# Labels & Formatting
+ax.set_ylabel("Score")
+ax.set_xlabel("Model Configuration")
+ax.set_title("Model Performance Comparison")
+ax.set_xticks(x)
+ax.set_xticklabels(models, rotation=15, ha="right")
+ax.legend()
+
+# Display values on top of bars
+def add_labels(bars):
+    for bar in bars:
+        height = bar.get_height()
+        ax.annotate(f'{height:.2f}',
+                    xy=(bar.get_x() + bar.get_width() / 2, height),
+                    xytext=(0, 3),  # Offset
+                    textcoords="offset points",
+                    ha="center", va="bottom")
+
+for bar_group in [bars1, bars2, bars3, bars4]:
+    add_labels(bar_group)
+
+plt.tight_layout()
+plt.show()
+
 
 🏆 \*\*Best Model:\*\* Dual-Branch CNN (RGB + HSV)
 
